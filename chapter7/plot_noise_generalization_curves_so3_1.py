@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# ====== 全局字体设置（按你的习惯） ======
+
 plt.rcParams.update({
     "font.size": 14,
     "axes.titlesize": 18,
@@ -12,7 +12,7 @@ plt.rcParams.update({
     "legend.fontsize": 13,
 })
 
-# ====== 路径设置 ======
+# ====== setting path ======
 ROOT = Path(".")
 
 RESULT_DIRS = [
@@ -35,7 +35,7 @@ def find_test_csv(result_dir: Path) -> Path:
     return files[0]
 
 
-# ====== 读取并合并所有结果 ======
+# ====== read all results ======
 dfs = []
 for result_dir in RESULT_DIRS:
     csv_path = find_test_csv(result_dir)
@@ -44,12 +44,12 @@ for result_dir in RESULT_DIRS:
 
 all_df = pd.concat(dfs, ignore_index=True)
 
-# 保证按数值排序
+
 all_df["train_std"] = all_df["train_std"].astype(int)
 all_df["test_std"] = all_df["test_std"].astype(int)
 all_df["test_acc"] = all_df["test_acc"].astype(float)
 
-# ====== 作图 ======
+# ====== plot ======
 plt.figure(figsize=(14, 6))
 
 for train_std in sorted(all_df["train_std"].unique()):
