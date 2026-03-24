@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-# ====== 全局字体设置 ======
+
 plt.rcParams.update({
     "font.size": 14,
     "axes.titlesize": 18,
